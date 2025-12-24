@@ -7,11 +7,20 @@ This is a Pygame application that requires a local display. Hugging Face Spaces 
 
 ## 📥 Download and Play Locally
 
+### For Mac/Linux:
+```bash
+git clone https://huggingface.co/spaces/ethan-codecub/PvP-Battle
+cd PvP-Battle
+pip3 install pygame
+python3 PvP.py
+```
+
+### For Windows:
 ```bash
 git clone https://huggingface.co/spaces/ethan-codecub/PvP-Battle
 cd PvP-Battle
 pip install pygame
-python3 PvP.py
+python PvP.py
 ```
 
 ## 🎯 Game Features
