@@ -1,13 +1,11 @@
 import gradio as gr
 
-def get_game_info():
-    return """# 🎮 PvP Battle Arena Game
+def show_mac_instructions():
+    return """## 📥 Installation Instructions for Mac/Linux
 
-This is a Pygame application that requires a local display. Hugging Face Spaces doesn't support interactive Pygame applications in the browser.
+1. Open Terminal
+2. Run these commands:
 
-## 📥 Download and Play Locally
-
-### For Mac/Linux:
 ```bash
 git clone https://huggingface.co/spaces/ethan-codecub/PvP-Battle
 cd PvP-Battle
@@ -15,7 +13,14 @@ pip3 install pygame
 python3 PvP.py
 ```
 
-### For Windows:
+That's it! The game will launch. Enjoy! 🎮"""
+
+def show_windows_instructions():
+    return """## 📥 Installation Instructions for Windows
+
+1. Open Command Prompt or PowerShell
+2. Run these commands:
+
 ```bash
 git clone https://huggingface.co/spaces/ethan-codecub/PvP-Battle
 cd PvP-Battle
@@ -23,7 +28,9 @@ pip install pygame
 python PvP.py
 ```
 
-## 🎯 Game Features
+That's it! The game will launch. Enjoy! 🎮"""
+
+game_info = """## 🎯 Game Features
 - **VS Player (Local)** - Two players on the same computer
 - **VS AI** - Battle against AI (Easy, Medium, Hard)
 - **Around The World (Online)** - Play with friends across the internet
@@ -68,7 +75,21 @@ python PvP.py
 
 with gr.Blocks() as demo:
     gr.Markdown("# 🎮 PvP Battle Arena")
-    gr.Markdown("A fast-paced 2D battle game with weapons, armor, and online multiplayer!")
-    gr.Markdown(get_game_info())
+    gr.Markdown("### A fast-paced 2D battle game with weapons, armor, and online multiplayer!")
+    gr.Markdown("*This is a Pygame application that requires local installation. Click a button below to get started!*")
+
+    gr.Markdown("## 📥 Choose Your Platform:")
+
+    with gr.Row():
+        mac_btn = gr.Button("🍎 Download for Mac/Linux Users", variant="primary", size="lg")
+        windows_btn = gr.Button("🪟 Download for Windows Users", variant="primary", size="lg")
+
+    instructions_output = gr.Markdown("")
+
+    mac_btn.click(fn=show_mac_instructions, outputs=instructions_output)
+    windows_btn.click(fn=show_windows_instructions, outputs=instructions_output)
+
+    gr.Markdown("---")
+    gr.Markdown(game_info)
 
 demo.launch()
