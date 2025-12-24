@@ -73,21 +73,43 @@ game_info = """## 🎯 Game Features
 
 🤖 Built with [Claude Code](https://claude.com/claude-code)"""
 
+def show_mobile_notice():
+    return """## 📱 Mobile Device Notice
+
+Unfortunately, this game cannot run on mobile devices (phones/tablets) because:
+
+1. **Pygame Not Supported** - Pygame requires a desktop operating system (Windows, Mac, or Linux)
+2. **No Terminal Access** - Mobile devices don't have command-line terminals needed for installation
+3. **Keyboard Controls** - The game is designed for keyboard input (WASD, Arrow keys, etc.)
+
+### 💡 How to Play on Mobile:
+
+**Option 1:** Use a **desktop computer** (Windows, Mac, or Linux) to download and play the game
+
+**Option 2:** If you have access to a **cloud gaming service** or **remote desktop app**, you could:
+- Install the game on a desktop computer
+- Access that computer remotely from your mobile device
+- Play using remote desktop controls
+
+Sorry for the inconvenience! This is a desktop-only game. 🎮💻"""
+
 with gr.Blocks() as demo:
     gr.Markdown("# 🎮 PvP Battle Arena")
     gr.Markdown("### A fast-paced 2D battle game with weapons, armor, and online multiplayer!")
-    gr.Markdown("*This is a Pygame application that requires local installation. Click a button below to get started!*")
+    gr.Markdown("*This is a Pygame application that requires a desktop computer. Choose your platform below:*")
 
     gr.Markdown("## 📥 Choose Your Platform:")
 
     with gr.Row():
-        mac_btn = gr.Button("🍎 Download for Mac/Linux Users", variant="primary", size="lg")
-        windows_btn = gr.Button("🪟 Download for Windows Users", variant="primary", size="lg")
+        mac_btn = gr.Button("🍎 Mac/Linux", variant="primary", size="lg")
+        windows_btn = gr.Button("🪟 Windows", variant="primary", size="lg")
+        mobile_btn = gr.Button("📱 Mobile Device", variant="secondary", size="lg")
 
     instructions_output = gr.Markdown("")
 
     mac_btn.click(fn=show_mac_instructions, outputs=instructions_output)
     windows_btn.click(fn=show_windows_instructions, outputs=instructions_output)
+    mobile_btn.click(fn=show_mobile_notice, outputs=instructions_output)
 
     gr.Markdown("---")
     gr.Markdown(game_info)
