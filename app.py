@@ -74,30 +74,43 @@ game_info = """## 🎯 Game Features
 🤖 Built with [Claude Code](https://claude.com/claude-code)"""
 
 def show_mobile_notice():
-    return """## 📱 Mobile Version Coming Soon!
+    return """## 📱 Mobile Users - Play on itch.io!
 
-This game is currently **desktop-only**, but we're working on a mobile-friendly web version!
+Good news! This game CAN run on mobile devices through **itch.io**!
 
-### Why Desktop-Only Right Now?
+### 🎮 How Mobile Users Can Play:
 
-This game uses **Pygame**, which is designed for desktop computers. However, the game includes touch controls (press T in-game), showing it was built with mobile in mind!
+**Option 1: Wait for itch.io deployment** (Coming Soon!)
+- The developer will upload the web version to itch.io
+- You can then play directly in your mobile browser
+- No downloads, no terminal, no setup needed!
+- Touch controls built-in (press T in-game)
 
-### 🚀 Future Mobile Support
+**Option 2: Download on Desktop** (Available Now)
+- If you have access to a desktop/laptop computer
+- Use the Mac/Linux or Windows buttons above
+- Install and play with full features
 
-We plan to convert this to a **web-based version** that will work on:
-- ✅ **Mobile phones** (iOS & Android)
-- ✅ **Tablets** (iPad, Android tablets)
-- ✅ **Any device with a web browser**
+### Why Can't Mobile Users Download Directly?
 
-The touch controls are already built-in and ready to go!
+Mobile devices (phones/tablets) don't have:
+- ❌ Command-line terminals for installation
+- ❌ Support for running Python/Pygame natively
+- ❌ Keyboard for game controls
 
-### 💡 Want to Play Now?
+### ✅ The Solution: itch.io Web Version
 
-For now, you'll need a **desktop computer** (Windows, Mac, or Linux) to download and play. Check out the Mac/Linux or Windows buttons above for instructions!
+The game will be converted to WebAssembly and hosted on **itch.io**, where:
+- ✅ Runs in ANY browser (mobile or desktop)
+- ✅ Touch controls already built-in
+- ✅ No downloads or setup required
+- ✅ Works on iOS, Android, tablets, everything!
 
 ---
 
-**Stay tuned for the mobile web version!** 🎮📱"""
+**Stay tuned! Web version coming to itch.io soon!** 🎮📱
+
+*Developer: See ITCH_IO_DEPLOY.md for deployment instructions*"""
 
 with gr.Blocks() as demo:
     gr.Markdown("# 🎮 PvP Battle Arena")
