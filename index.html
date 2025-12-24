@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>PvP Battle Arena - Play in Browser!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: #f0f0f0;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+
+        #pygame-container {
+            background: #000;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        canvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .loading {
+            color: white;
+            font-size: 1.5em;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .controls {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            color: white;
+            max-width: 800px;
+        }
+
+        .controls h3 {
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .controls p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .mobile-notice {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            color: white;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 PvP Battle Arena</h1>
+    <p class="subtitle">Battle with friends - Now playable in your browser!</p>
+
+    <div id="pygame-container">
+        <div class="loading">
+            Loading game... Please wait ⏳
+        </div>
+    </div>
+
+    <div class="mobile-notice">
+        <strong>📱 Mobile Users:</strong> Press the <strong>T</strong> key (or tap the "TOUCH ON/OFF" button in-game) to enable touch controls!
+    </div>
+
+    <div class="controls">
+        <h3>🎮 Controls</h3>
+        <p><strong>Player 1:</strong> WASD to move, SPACE to attack</p>
+        <p><strong>Player 2:</strong> Arrow keys to move, IJKL to aim, SHIFT to shoot, ENTER for melee</p>
+        <p><strong>General:</strong> Press T to toggle touch controls, ESC to return to menu</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/pygame-web/pygbag@main/static/pygbag.js" type="module"></script>
+    <script type="module">
+        import { loadPyodide } from 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.mjs';
+
+        async function main() {
+            try {
+                const pyodide = await loadPyodide({
+                    indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/'
+                });
+
+                console.log('Pyodide loaded successfully');
+
+                // Install pygame
+                await pyodide.loadPackage('pygame');
+                console.log('Pygame loaded');
+
+                // Load and run the game
+                const response = await fetch('main.py');
+                const code = await response.text();
+                await pyodide.runPythonAsync(code);
+
+                console.log('Game started!');
+            } catch (error) {
+                console.error('Error loading game:', error);
+                document.getElementById('pygame-container').innerHTML =
+                    '<div class="loading">Error loading game. Please refresh the page.</div>';
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>

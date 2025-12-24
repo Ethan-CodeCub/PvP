@@ -3,8 +3,7 @@ title: PvP Battle Arena
 emoji: 🎮
 colorFrom: red
 colorTo: blue
-sdk: gradio
-app_file: app.py
+sdk: static
 pinned: false
 license: mit
 ---
