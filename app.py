@@ -74,24 +74,30 @@ game_info = """## 🎯 Game Features
 🤖 Built with [Claude Code](https://claude.com/claude-code)"""
 
 def show_mobile_notice():
-    return """## 📱 Mobile Device Notice
+    return """## 📱 Mobile Version Coming Soon!
 
-Unfortunately, this game cannot run on mobile devices (phones/tablets) because:
+This game is currently **desktop-only**, but we're working on a mobile-friendly web version!
 
-1. **Pygame Not Supported** - Pygame requires a desktop operating system (Windows, Mac, or Linux)
-2. **No Terminal Access** - Mobile devices don't have command-line terminals needed for installation
-3. **Keyboard Controls** - The game is designed for keyboard input (WASD, Arrow keys, etc.)
+### Why Desktop-Only Right Now?
 
-### 💡 How to Play on Mobile:
+This game uses **Pygame**, which is designed for desktop computers. However, the game includes touch controls (press T in-game), showing it was built with mobile in mind!
 
-**Option 1:** Use a **desktop computer** (Windows, Mac, or Linux) to download and play the game
+### 🚀 Future Mobile Support
 
-**Option 2:** If you have access to a **cloud gaming service** or **remote desktop app**, you could:
-- Install the game on a desktop computer
-- Access that computer remotely from your mobile device
-- Play using remote desktop controls
+We plan to convert this to a **web-based version** that will work on:
+- ✅ **Mobile phones** (iOS & Android)
+- ✅ **Tablets** (iPad, Android tablets)
+- ✅ **Any device with a web browser**
 
-Sorry for the inconvenience! This is a desktop-only game. 🎮💻"""
+The touch controls are already built-in and ready to go!
+
+### 💡 Want to Play Now?
+
+For now, you'll need a **desktop computer** (Windows, Mac, or Linux) to download and play. Check out the Mac/Linux or Windows buttons above for instructions!
+
+---
+
+**Stay tuned for the mobile web version!** 🎮📱"""
 
 with gr.Blocks() as demo:
     gr.Markdown("# 🎮 PvP Battle Arena")
