@@ -1,3 +1,15 @@
+---
+title: PvP Battle Arena
+emoji: 🎮
+colorFrom: red
+colorTo: blue
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # PvP Battle Arena
 
 A fast-paced 2D battle arena game with weapons, armor, healing gems, and online multiplayer support!
