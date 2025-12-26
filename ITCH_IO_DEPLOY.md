@@ -52,12 +52,15 @@ This will create a `build/web` folder with all the files needed for itch.io.
 
 1. Scroll to "Uploads" section
 2. Click "Upload files"
-3. **ZIP the build/web folder first:**
-   ```bash
-   cd build
-   zip -r pvp-battle-arena.zip web/
-   ```
-4. Upload `pvp-battle-arena.zip`
+3. **Upload the APK file directly:**
+   - Go to `build/web/` folder
+   - Upload the file `pvp.game.apk`
+   - **OR** ZIP it first (optional):
+     ```bash
+     cd "/Users/mac/Desktop/Ethan/Projects/PvP game/build/web"
+     zip pvp-battle-arena.zip pvp.game.apk
+     ```
+4. Upload `pvp.game.apk` (or the ZIP)
 5. Check the box "This file will be played in the browser"
 6. Set as the **Primary file**
 
