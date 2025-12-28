@@ -5,8 +5,12 @@ import socket
 import threading
 import json
 import time
+import os
 
 pygame.init()
+
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Constants
 SCREEN_WIDTH = 1280
@@ -38,10 +42,11 @@ WEAPONS = {
 WEAPON_IMAGES = {}
 for weapon_key, weapon_data in WEAPONS.items():
     try:
-        img = pygame.image.load(weapon_data['image'])
+        image_path = os.path.join(SCRIPT_DIR, weapon_data['image'])
+        img = pygame.image.load(image_path)
         WEAPON_IMAGES[weapon_key] = pygame.transform.scale(img, (35, 35))
-    except:
-        print(f"Could not load weapon image: {weapon_data['image']}")
+    except Exception as e:
+        print(f"Could not load weapon image: {weapon_data['image']} - {e}")
         WEAPON_IMAGES[weapon_key] = None
 
 # Armor
@@ -102,12 +107,13 @@ class HealingGem:
             ]
             for path in gem_paths:
                 try:
-                    img = pygame.image.load(path)
+                    image_path = os.path.join(SCRIPT_DIR, path)
+                    img = pygame.image.load(image_path)
                     # Scale gem to appropriate size
                     img = pygame.transform.scale(img, (40, 40))
                     cls.gem_images.append(img)
-                except:
-                    print(f"Could not load gem image: {path}")
+                except Exception as e:
+                    print(f"Could not load gem image: {path} - {e}")
             cls.images_loaded = True
 
     def __init__(self, x, y):
@@ -179,9 +185,10 @@ class Cave:
     def load_image(cls):
         if cls.cave_image is None:
             try:
-                cls.cave_image = pygame.image.load('PvP images/PvP cave.png')
-            except:
-                print("Could not load cave image: PvP images/PvP cave.png")
+                image_path = os.path.join(SCRIPT_DIR, 'PvP images/PvP cave.png')
+                cls.cave_image = pygame.image.load(image_path)
+            except Exception as e:
+                print(f"Could not load cave image: PvP images/PvP cave.png - {e}")
 
     def __init__(self, x, y, width, height):
         self.x = x
@@ -239,11 +246,12 @@ class Player:
         self.image = None
         if image_path:
             try:
-                self.image = pygame.image.load(image_path)
+                full_path = os.path.join(SCRIPT_DIR, image_path)
+                self.image = pygame.image.load(full_path)
                 # Scale image to player size
                 self.image = pygame.transform.scale(self.image, (self.width, self.height))
-            except:
-                print(f"Could not load image: {image_path}")
+            except Exception as e:
+                print(f"Could not load image: {image_path} - {e}")
 
         # Stats
         self.health = 100
